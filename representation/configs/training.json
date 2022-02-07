@@ -1,143 +1,142 @@
 {
-  "data_root": "/path/to/data/root",
-  "experiment_root": "/path/to/experiment/root",
-  "net_load_weights": true,
-  "export_jit_model": false,
-  "eval_only": false,
-  "net_depth_model_path": "/path/to/depth/model",
-  "net_feat_model_path": "/path/to/feature/model",
-  "net_ba_model_path": "/path/to/bundle/adjustment/model",
-  "net_disc_model_path": "/path/to/discriminator/model",
-  "net_input_image_size": [
-    128,
-    160
-  ],
-  "net_output_map_size": [
-    64,
-    80
-  ],
-  "net_pre_downconv_steps": 1,
-  "net_feat_net_filter_list": [
-    8,
-    16,
-    32,
-    64,
-    128
-  ],
-  "net_depth_net_filter_list": [
-    8,
-    16,
-    32,
-    64,
-    128
-  ],
-  "net_feat_net_bottleneck_filter": 128,
-  "net_depth_net_bottleneck_filter": 128,
-  "net_gn_group_size": 4,
-  "net_fm_response_sigma": 30.0,
-  "net_feat_net_desc_inner_filter_list": [
-    64,
-    64,
-    16
-  ],
-  "net_depth_net_bias_inner_filter_list": [
-    64,
-    64,
-    1
-  ],
-  "net_feat_net_map_inner_filter_list": [
-    64,
-    64,
-    16
-  ],
-  "net_depth_net_basis_inner_filter_list": [
-    [
-      128,
-      128,
-      16
-    ]
-  ],
-  "net_feat_net_desc_out_activation": "tanh",
-  "net_feat_net_map_out_activation": "tanh",
-  "net_depth_net_basis_out_activation": "linear",
-  "net_depth_net_bias_out_activation": "linear",
-  "net_disc_filter_base": 12,
-  "net_disc_num_block": 4,
-  "lm_photo_nsamples": 3072,
-  "lm_reproj_nsamples": 256,
-  "lm_init_damp": 0.0001,
-  "lm_damp_min_max_cap": [
-    1e-06,
-    1e-02
-  ],
-  "lm_damp_inc_dec_factor": [
-    11.0,
-    9.0
-  ],
-  "lm_train_max_niters": 40,
-  "lm_eval_max_niters": 40,
-  "lm_grad_threshold": 1e-04,
-  "lm_param_threshold": 1e-02,
-  "lm_depth_eps": 0.001,
-  "lm_max_condition": 1.0e9,
-  "lm_geometry_cauchy_param_factor": 0.1,
-  "lm_geometry_term_weight": 0.05,
-  "lm_photo_pow_factor": 0.0,
-  "lm_code_term_weight": 1.0e-3,
-  "lm_scale_term_weight": 1.0e-4,
-  "lm_photo_weight": 0.8,
-  "lm_num_photo_level": 4,
-  "lm_match_geom_term_weight": 0.1,
-  "lm_match_geom_param_factor": 0.1,
-  "lm_display_matches": 20,
-  "num_workers": 4,
-  "train_num_iter_per_epoch": 301,
-  "train_result_display_freq": 20,
-  "eval_num_iter_per_epoch": 101,
-  "eval_result_display_freq": 20,
-  "train_id_list": [
-    1
-  ],
-  "eval_id_list": [
-    1
-  ],
-  "frame_interval": 60,
-  "far_frame_interval": 60,
-  "aug_rot_limit": 0.78,
-  "depth_loss_eps": 0.001,
-  "flow_loss_eps": 0.01,
-  "no_match_loss_weight": 10.0,
-  "g_adv_loss_weight": 1.0,
-  "d_adv_loss_weight": 1.0,
-  "depth_loss_weight": 20.0,
-  "flow_loss_weight": 10.0,
-  "desc_loss_weight": 4.0,
-  "hist_loss_weight": 4.0,
-  "decor_loss_weight": 2.5,
-  "min_max_lr": [
-    0.0001,
-    0.0005
-  ],
-  "model_save_freq": 1,
-  "max_epoch": 1000,
-  "gradient_checkpoint": true,
-  "max_rot_dir_rad": 0.4,
-  "max_rot_angle_rad": 0.4,
-  "max_trans_dir_rad": 0.4,
-  "max_trans_dist_offset": 0.5,
-  "hdf5_pattern": "fusion_data_fm_only_spatial_grouping.hdf5",
-  "device": "cuda:0",
-  "num_hist_bins": 100,
-  "hist_loss_margin": 0.3,
-  "cycle_consis_threshold": 6.0,
-  "tgt_overlap_ratio": 0.6,
-  "far_overlap_ratio": 0.5,
-  "random_overlap_ratio": 0.4,
-  "fast_threshold": 1,
-  "separate_train_epoch": 40,
-  "debug_gradient_tracking": false,
-  "debug_gradient_threshold": 1000.0,
-  "debug_visualize_lm_result": false,
-  "debug_logging_mode": "info",
-  "run_id": ""
+    "data_root": "./data",
+    "experiment_root": "/tmp",
+    "net_load_weights": true,
+    "export_jit_model": false,
+    "eval_only": false,
+    "net_depth_model_path": "./pretrained/depth_model.pt",
+    "net_feat_model_path": "./pretrained/feature_model.pt",
+    "net_ba_model_path": "./pretrained/ba_model.pt",
+    "net_disc_model_path": "./pretrained/disc_model.pt",
+    "net_input_image_size": [
+        128,
+        160
+    ],
+    "net_output_map_size": [
+        64,
+        80
+    ],
+    "net_pre_downconv_steps": 1,
+    "net_feat_net_filter_list": [
+        8,
+        16,
+        32,
+        64,
+        128
+    ],
+    "net_depth_net_filter_list": [
+        8,
+        16,
+        32,
+        64,
+        128
+    ],
+    "net_feat_net_bottleneck_filter": 128,
+    "net_depth_net_bottleneck_filter": 128,
+    "net_gn_group_size": 4,
+    "net_fm_response_sigma": 30.0,
+    "net_feat_net_desc_inner_filter_list": [
+        64,
+        64,
+        16
+    ],
+    "net_depth_net_bias_inner_filter_list": [
+        64,
+        64,
+        1
+    ],
+    "net_feat_net_map_inner_filter_list": [
+        64,
+        64,
+        16
+    ],
+    "net_depth_net_basis_inner_filter_list": [
+        [
+            128,
+            128,
+            16
+        ]
+    ],
+    "net_feat_net_desc_out_activation": "tanh",
+    "net_feat_net_map_out_activation": "tanh",
+    "net_depth_net_basis_out_activation": "linear",
+    "net_depth_net_bias_out_activation": "linear",
+    "net_disc_filter_base": 12,
+    "net_disc_num_block": 4,
+    "lm_photo_nsamples": 3072,
+    "lm_reproj_nsamples": 256,
+    "lm_init_damp": 0.0001,
+    "lm_damp_min_max_cap": [
+        1e-06,
+        1e-02
+    ],
+    "lm_damp_inc_dec_factor": [
+        11.0,
+        9.0
+    ],
+    "lm_train_max_niters": 40,
+    "lm_eval_max_niters": 40,
+    "lm_grad_threshold": 1e-04,
+    "lm_param_threshold": 1e-02,
+    "lm_depth_eps": 0.001,
+    "lm_max_condition": 1.0e9,
+    "lm_geometry_cauchy_param_factor": 0.1,
+    "lm_geometry_term_weight": 0.05,
+    "lm_photo_pow_factor": 0.0,
+    "lm_code_term_weight": 1.0e-3,
+    "lm_scale_term_weight": 1.0e-4,
+    "lm_photo_weight": 0.8,
+    "lm_num_photo_level": 4,
+    "lm_match_geom_term_weight": 0.1,
+    "lm_match_geom_param_factor": 0.1,
+    "lm_display_matches": 20,
+    "num_workers": 4,
+    "train_num_iter_per_epoch": 301,
+    "train_result_display_freq": 20,
+    "eval_num_iter_per_epoch": 101,
+    "eval_result_display_freq": 20,
+    "train_id_list": [
+        1
+    ],
+    "eval_id_list": [
+        1
+    ],
+    "frame_interval": 60,
+    "far_frame_interval": 60,
+    "aug_rot_limit": 0.78,
+    "depth_loss_eps": 0.001,
+    "flow_loss_eps": 0.01,
+    "no_match_loss_weight": 10.0,
+    "g_adv_loss_weight": 1.0,
+    "d_adv_loss_weight": 1.0,
+    "depth_loss_weight": 20.0,
+    "flow_loss_weight": 10.0,
+    "desc_loss_weight": 4.0,
+    "hist_loss_weight": 4.0,
+    "decor_loss_weight": 2.5,
+    "min_max_lr": [
+        0.0001,
+        0.0005
+    ],
+    "model_save_freq": 1,
+    "max_epoch": 1000,
+    "gradient_checkpoint": true,
+    "max_rot_dir_rad": 0.4,
+    "max_rot_angle_rad": 0.4,
+    "max_trans_dir_rad": 0.4,
+    "max_trans_dist_offset": 0.5,
+    "hdf5_pattern": "fusion_data.hdf5",
+    "device": "cuda:0",
+    "num_hist_bins": 100,
+    "hist_loss_margin": 0.3,
+    "cycle_consis_threshold": 6.0,
+    "tgt_overlap_ratio": 0.6,
+    "far_overlap_ratio": 0.5,
+    "random_overlap_ratio": 0.4,
+    "fast_threshold": 1,
+    "separate_train_epoch": 40,
+    "debug_gradient_tracking": false,
+    "debug_gradient_threshold": 1000.0,
+    "debug_visualize_lm_result": false,
+    "debug_logging_mode": "info"
 }
