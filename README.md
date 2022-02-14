@@ -143,4 +143,9 @@
     ```
     Note that if the X11 display is working normally, the option `enable_gui` can be set to `true` to see if the GUI of the SLAM system can be brought up. The visualization inside the Docker container has not been fully tested for this SLAM system and please let me know if there is any issue with it.
 
-    
+
+## Contact Us
+
+Xingtong Liu - [xliu89jhu@gmail.com](mailto:xliu89jhu@gmail.com)
+Mathias Unberath - [unberath@jhu.edu](mailto:unberath@jhu.edu)
+
