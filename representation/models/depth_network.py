@@ -63,9 +63,8 @@ class DepthNet(nn.Module):
 
         for id, basis_filter_list in enumerate(self.basis_inner_filter_list_hierarchy):
             basis_filter_list = [dec_filter_list[-1]] + basis_filter_list
-            self.dpt_basis_convs_hierarchy[f"basis_{id:d}"] = \
-                self.generate_convs_block(inner_filter_list=basis_filter_list,
-                                          out_activation=basis_out_activation, pool_factor=int(2 ** id))
+            self.dpt_basis_convs_hierarchy[f"basis_{id}"] = self.generate_convs_block(inner_filter_list=basis_filter_list,
+                                                                                      out_activation=basis_out_activation, pool_factor=int(2 ** id))
 
         bias_inner_filter_list = [dec_filter_list[-1]] + bias_inner_filter_list
         for i in range(len(bias_inner_filter_list) - 1):
@@ -98,6 +97,7 @@ class DepthNet(nn.Module):
 
         return convs_list
 
+    @torch.jit.ignore
     def forward_train(self, x, mask, return_basis):
         out_dpt_basis_hierarchy = list()
         encoder_outs = list()
@@ -116,15 +116,14 @@ class DepthNet(nn.Module):
         for i, module in enumerate(self.up_convs):
             enc_out = encoder_outs[-(i + 1)]
             mask = encoder_masks[-(i + 1)]
-            x, mask = module([enc_out, x, mask])
+            x, mask = module(enc_out, x, mask)
 
         if return_basis:
             # basis branch
-            for id in range(self.num_basis_levels):
+            for key, convs in self.dpt_basis_convs_hierarchy.items():
                 mask = encoder_masks[0]
                 dpt_basis = x
-                for module in self.dpt_basis_convs_hierarchy[
-                        f"basis_{id:d}"]:
+                for module in convs:
                     dpt_basis, mask = module(dpt_basis, mask)
 
                 out_dpt_basis_hierarchy.append(dpt_basis)
@@ -140,6 +139,7 @@ class DepthNet(nn.Module):
         else:
             return out_dpt_bias
 
+    @torch.jit.export
     def forward(self, x, mask):
         out_dpt_basis_hierarchy = list()
         encoder_outs = list()
@@ -158,16 +158,14 @@ class DepthNet(nn.Module):
         for i, module in enumerate(self.up_convs):
             enc_out = encoder_outs[-(i + 1)]
             mask = encoder_masks[-(i + 1)]
-            x, mask = module([enc_out, x, mask])
+            x, mask = module(enc_out, x, mask)
 
         # basis branch
-        for id in range(self.num_basis_levels):
+        for key, convs in self.dpt_basis_convs_hierarchy.items():
             mask = encoder_masks[0]
             dpt_basis = x
-            for module in self.dpt_basis_convs_hierarchy[
-                    f"basis_{id:d}"]:
+            for module in convs:
                 dpt_basis, mask = module(dpt_basis, mask)
-
             out_dpt_basis_hierarchy.append(dpt_basis)
 
         # bias branch

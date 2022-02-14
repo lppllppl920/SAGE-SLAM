@@ -66,6 +66,8 @@ def main():
     logger.addHandler(ch)
     logger.addHandler(fh)
 
+    logger.info("Logging at {}".format(str(log_root)))
+
     if args.lm_reproj_nsamples > args.lm_photo_nsamples:
         logger.warning(
             "lm_reproj_nsamples should not be larger than lm_photo_nsamples, capping it")
@@ -76,7 +78,6 @@ def main():
     writer = None
     if not args.export_jit_model:
         writer = SummaryWriter(log_dir=str(log_root), flush_secs=10)
-        logger.info("Tensorboard visualization at {}".format(str(log_root)))
         name = "tensorboard"
         # iterating through each instance of the proess
         for line in os.popen("ps ax | grep " + name + " | grep -v grep"):
@@ -133,9 +134,11 @@ def main():
         net=depth_model, type="glorot", distribution="uniform")
     disc_model = utils.init_net(
         net=disc_model, type="glorot", distribution="uniform")
-    utils.count_parameters(feat_model)
-    utils.count_parameters(depth_model)
-    utils.count_parameters(disc_model)
+
+    if args.summarize_network:
+        utils.count_parameters(feat_model)
+        utils.count_parameters(depth_model)
+        utils.count_parameters(disc_model)
 
     diff_ba = \
         models.DiffBundleAdjustment(match_geom_param_factor=args.lm_match_geom_param_factor,
@@ -158,14 +161,14 @@ def main():
                                         cycle_consis_threshold=args.cycle_consis_threshold).cuda()
 
     if args.net_load_weights:
-        if args.net_feat_model_path is not None and Path(args.net_feat_model_path).exists():
-            _, epoch, step = \
-                utils.load_model(model=feat_model, trained_model_path=Path(args.net_feat_model_path),
-                                 partial_load=True)
-
         if args.net_depth_model_path is not None and Path(args.net_depth_model_path).exists():
             _, epoch, step = \
                 utils.load_model(model=depth_model, trained_model_path=Path(args.net_depth_model_path),
+                                 partial_load=True)
+
+        if args.net_feat_model_path is not None and Path(args.net_feat_model_path).exists():
+            _, epoch, step = \
+                utils.load_model(model=feat_model, trained_model_path=Path(args.net_feat_model_path),
                                  partial_load=True)
 
         if args.net_ba_model_path is not None and Path(args.net_ba_model_path).exists():
@@ -184,21 +187,12 @@ def main():
                       "decor": losses.BasisDecorrelationLoss()}
 
     if args.export_jit_model is True:
-        input_image = torch.ones(1, *args.net_input_image_size, 3). \
-            permute(0, 3, 1, 2).float().cuda()
-        input_mask = torch.ones(1, *args.net_input_image_size, 1). \
-            permute(0, 3, 1, 2).float().cuda()
-
-        with torch.jit.optimized_execution(True):
-            depth_model.eval()
-            feat_model.eval()
-            depth_model = torch.jit.trace_module(
-                mod=depth_model, inputs={'forward': (input_image, input_mask)})
-            feat_model = torch.jit.trace_module(
-                mod=feat_model, inputs={'forward': (input_image, input_mask)})
-
-        depth_model.save(str(log_root / "jit_depth_model.pt"))
-        feat_model.save(str(log_root / "jit_feat_model.pt"))
+        depth_model.eval()
+        feat_model.eval()
+        scripted_depth_model = torch.jit.script(depth_model)
+        scripted_feat_model = torch.jit.script(feat_model)
+        scripted_depth_model.save(str(log_root / "jit_depth_model.pt"))
+        scripted_feat_model.save(str(log_root / "jit_feat_model.pt"))
         logger.info("JIT ScriptModule has been generated, exit now")
         exit(0)
 

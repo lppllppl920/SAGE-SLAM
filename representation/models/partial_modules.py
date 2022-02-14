@@ -7,80 +7,41 @@ import numpy as np
 
 class PartialConv2d(nn.Conv2d):
     def __init__(self, *args, **kwargs):
-
-        # whether the mask is multi-channel or not
-        if 'multi_channel' in kwargs:
-            self.multi_channel = kwargs['multi_channel']
-            kwargs.pop('multi_channel')
-        else:
-            self.multi_channel = False
-
-        if 'return_mask' in kwargs:
-            self.return_mask = kwargs['return_mask']
-            kwargs.pop('return_mask')
-        else:
-            self.return_mask = False
-
         super(PartialConv2d, self).__init__(*args, **kwargs)
 
-        if self.multi_channel:
-            self.weight_maskUpdater = torch.ones(self.out_channels, self.in_channels, self.kernel_size[0],
-                                                 self.kernel_size[1]).cuda()
-        else:
-            self.weight_maskUpdater = torch.ones(
-                1, 1, self.kernel_size[0], self.kernel_size[1]).cuda()
+        self.weight_maskUpdater = torch.ones(
+            1, 1, self.kernel_size[0], self.kernel_size[1]).cuda()
 
         self.slide_winsize = self.weight_maskUpdater.shape[1] * self.weight_maskUpdater.shape[2] * \
             self.weight_maskUpdater.shape[3]
 
-        self.last_size = (None, None, None, None)
-        self.update_mask = None
-        self.mask_ratio = None
+    def forward(self, input, mask):
+        with torch.no_grad():
+            assert (self.stride == (1, 1) and self.dilation == (1, 1))
+            update_mask = F.conv2d(mask, weight=self.weight_maskUpdater, bias=None, stride=self.stride, 
+                                        padding=self.padding, dilation=self.dilation, groups=1) / \
+                self.slide_winsize
+            binary_mask = (update_mask >= 0.01).float()
 
-    def forward(self, input, mask_in=None):
-        assert len(input.shape) == 4
-        if mask_in is not None or self.last_size != tuple(input.shape):
-            self.last_size = tuple(input.shape)
+        raw_out = self._conv_forward(input * mask, self.weight, self.bias)
 
-            with torch.no_grad():
-                if mask_in is None:
-                    # if mask is not provided, create a mask
-                    if self.multi_channel:
-                        mask = torch.ones(input.data.shape[0], input.data.shape[1], input.data.shape[2],
-                                          input.data.shape[3]).to(input)
-                    else:
-                        mask = torch.ones(
-                            1, 1, input.data.shape[2], input.data.shape[3]).to(input)
-                else:
-                    mask = mask_in
-
-                assert (self.stride == (1, 1) and self.dilation == (1, 1))
-
-                self.update_mask = F.conv2d(mask, self.weight_maskUpdater, bias=None, stride=self.stride,
-                                            padding=self.padding, dilation=self.dilation, groups=1) / \
-                    self.slide_winsize
-                self.binary_mask = (self.update_mask >= 0.01).float()
-
-        raw_out = super(PartialConv2d, self).forward(
-            torch.mul(input, mask) if mask_in is not None else input)
-
-        if self.bias is not None:
-            bias_view = self.bias.view(1, self.out_channels, 1, 1)
-            output = torch.div(raw_out - bias_view,
-                               self.update_mask + 1.0e-8) + bias_view
-            output = output * self.binary_mask
+        # NOTE: optional argument needs to be first assigned to a local variable and then use if-else statment to inform the compiler 
+        # https://pytorch.org/docs/stable/jit_language_reference.html
+        bias = self.bias
+        if bias is not None:
+            bias = bias.reshape(1, self.out_channels, 1, 1)
+            output = torch.div(raw_out - bias, update_mask + 1.0e-8) + bias
+            output = output * binary_mask
         else:
-            output = torch.div(raw_out, self.update_mask + 1.0e-8)
-            output = output * self.binary_mask
+            output = torch.div(raw_out, update_mask + 1.0e-8)
+            output = output * binary_mask
 
-        if self.return_mask:
-            return output, self.binary_mask
-        else:
-            return output
+        return output, binary_mask
+
 
 
 def partial_conv3x3(in_channels, out_channels, stride=1,
-                    padding=1, bias=True, groups=1, return_mask=True):
+                    padding=1, bias=True, groups=1):
     return PartialConv2d(
         in_channels=in_channels,
         out_channels=out_channels,
@@ -88,8 +49,7 @@ def partial_conv3x3(in_channels, out_channels, stride=1,
         stride=stride,
         padding=padding,
         bias=bias,
-        groups=groups,
-        return_mask=return_mask)
+        groups=groups)
 
 
 class PartialDownConvNoPre(nn.Module):
@@ -107,18 +67,17 @@ class PartialDownConvNoPre(nn.Module):
         self.ngroups = int(np.maximum(1, out_channels // group_size))
 
         self.conv1 = partial_conv3x3(
-            self.in_channels, self.out_channels, return_mask=True)
+            self.in_channels, self.out_channels)
         self.bn = nn.GroupNorm(num_groups=self.ngroups,
                                num_channels=self.out_channels)
         self.conv2 = partial_conv3x3(
-            self.out_channels, self.out_channels, return_mask=True)
+            self.out_channels, self.out_channels)
         self.pool_factor = pool_factor
 
-        if self.pooling:
-            self.mask_pool = nn.MaxPool2d(
-                kernel_size=pool_factor, stride=pool_factor)
-            self.pool = nn.MaxPool2d(
-                kernel_size=pool_factor, stride=pool_factor)
+        self.mask_pool = nn.MaxPool2d(
+            kernel_size=pool_factor, stride=pool_factor)
+        self.pool = nn.MaxPool2d(
+            kernel_size=pool_factor, stride=pool_factor)
 
     def forward(self, x, mask):
         x, mask = self.conv1(x, mask)
@@ -148,11 +107,11 @@ class PartialDownConv(nn.Module):
         self.ngroups = int(np.maximum(1, out_channels // group_size))
 
         self.conv1 = partial_conv3x3(
-            self.in_channels, self.out_channels, return_mask=True)
+            self.in_channels, self.out_channels)
         self.bn = nn.GroupNorm(num_groups=self.ngroups,
                                num_channels=self.out_channels)
         self.conv2 = partial_conv3x3(
-            self.out_channels, self.out_channels, return_mask=True)
+            self.out_channels, self.out_channels)
         self.pool_factor = pool_factor
 
         if self.pooling:
@@ -189,11 +148,11 @@ class PartialBlock(nn.Module):
         self.ngroups = int(np.maximum(1, out_channels // group_size))
 
         self.conv1 = partial_conv3x3(
-            self.in_channels, self.out_channels, return_mask=True)
+            self.in_channels, self.out_channels)
         self.bn = nn.GroupNorm(num_groups=self.ngroups,
                                num_channels=self.out_channels)
         self.conv2 = partial_conv3x3(
-            self.out_channels, self.out_channels, return_mask=True)
+            self.out_channels, self.out_channels)
         self.out_activation = out_activation
         self.eps = eps
 
@@ -236,19 +195,16 @@ class PartialUpConv(nn.Module):
 
         self.upsample = nn.Upsample(mode='nearest', scale_factor=2)
 
-        if self.merge_mode == 'concat':
-            self.conv1 = partial_conv3x3(
-                self.in_channels, self.out_channels)
-        else:
-            # num of input channels to conv2 is the same
-            self.conv1 = partial_conv3x3(self.in_channels, self.out_channels)
+        self.conv1 = partial_conv3x3(self.in_channels, self.out_channels)
+
         self.bn = nn.GroupNorm(num_groups=self.ngroups,
                                num_channels=self.out_channels)
+                               
         self.conv2 = partial_conv3x3(self.out_channels, self.out_channels)
 
-    def forward(self, x):
-        enc_output, dec_output, mask = x
+    def forward(self, enc_output, dec_output, mask):
         dec_output = self.upsample(dec_output)
+
         if self.merge_mode == 'concat':
             x = torch.cat([dec_output, enc_output], dim=1)
         else:

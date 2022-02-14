@@ -1,0 +1,8 @@
+--data_root=./data
+--output_root=/tmp
+--feature_network_path=./pretrained/jit_feat_model.pt
+--outname=bow_voc
+--max_frames_per_seq=10
+--k=10
+--L=3
+--subsample_points=500

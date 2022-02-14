@@ -437,7 +437,7 @@ def make_grad_dot(var, fn_dict, params=None, bad_grad=1.0e2):
     Args:
         var: output Variable
         params: dict of (name, Variable) to add names to node that
-            require grad (TODO: make optional)
+            require grad
     """
     if params is not None:
         assert all(isinstance(p, Variable) for p in params.values())

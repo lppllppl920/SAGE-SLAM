@@ -1579,6 +1579,10 @@ class DiffBundleAdjustment(torch.nn.Module):
         tgt_keypoints_list = list()
         corr_tgt_keypoints_list = list()
         matches_list = list()
+
+        src_keypoint_2d_hw_locations = src_keypoint_2d_hw_locations.cpu().numpy()
+        tgt_keypoint_2d_hw_locations = tgt_keypoint_2d_hw_locations.cpu().numpy()
+        corr_tgt_2d_locations = corr_tgt_2d_locations.cpu().numpy()
         for i in range(len(self.display_match_indexes)):
             src_2d_loc = src_keypoint_2d_hw_locations[i, :]
             keypoint = cv2.KeyPoint(

@@ -1,0 +1,137 @@
+--source_url=hdf5://./data/bag_1/_start_002603_end_002984_stride_1000_segment_00/fusion_data.hdf5
+--depth_network_path=./pretrained/jit_depth_model.pt
+--feature_network_path=./pretrained/jit_feat_model.pt
+--vocab_path=./pretrained/bow_voc.yml.gz
+
+--init_type=ONEFRAME
+--init_on_start=true
+--net_input_size=128,160
+--net_output_size=64,80
+--keyframe_mode=AUTO
+
+--pose_dist_trans_weight=1.0
+--pose_dist_rot_weight=1.0
+
+# camera tracking module
+--tracking_mode=CLOSEST
+--tracking_max_num_iters=40
+--tracking_min_grad_thresh=1.0e-4
+--tracking_min_param_inc_thresh=1.0e-2
+--tracking_init_damp=1.0e-4
+--tracking_min_max_damp=1.0e-6,1.0e-2
+--tracking_damp_dec_inc_factor=10,100
+--tracking_jac_update_err_inc_threshold=1.0e-2
+
+# factors related
+--tracking_desc_num_keypoints=256
+--tracker_reproj_factor_weight=0.1
+--tracker_match_geom_factor_weight=0.1
+--tracking_ref_kf_select_ratio=0.6
+--use_tracker_reprojection=true
+--use_tracker_photometric=true
+
+# keyframe creation module
+# new frames criteria
+--new_kf_max_area_ratio=0.85
+--new_kf_max_inlier_ratio=0.92
+--new_kf_max_desc_inlier_ratio=0.4
+--new_kf_min_average_motion=0.08
+# temporal connection
+--temporal_max_back_connections=3
+--temporal_min_desc_inlier_ratio=0.7
+
+# loop closure module
+--use_global_loop=true
+--use_local_loop=true
+--loop_max_candidates=20
+--loop_local_active_window=9
+--loop_global_active_window=10
+--loop_tracking_max_num_iters=400
+--loop_tracking_min_grad_thresh=1.0e-4
+--loop_tracking_min_param_inc_thresh=1.0e-2
+--loop_tracking_damp_dec_inc_factor=10,30
+--loop_min_area_ratio=0.5
+--loop_min_inlier_ratio=0.5
+--loop_min_desc_inlier_ratio=0.3
+--loop_local_dist_ratio=5.0
+--loop_local_metric_ratio=0.7
+--loop_global_sim_ratio=0.7
+--loop_global_metric_ratio=0.7
+--loop_detection_frequency=10.0
+--global_redundant_range=10
+--loop_use_match_geom=true
+--pose_graph_local_link_weight=1.0
+--pose_graph_global_link_weight=5.0
+--pose_graph_rot_weight=1.0
+--pose_graph_scale_prior_weight=50.0
+--pose_graph_scale_weight=3.0
+--pose_graph_max_iters=200
+--pose_graph_no_relin_max_iters=10
+--pose_scale_graph_max_iters=200
+--pose_scale_graph_no_relin_max_iters=5
+--loop_pose_linearize_threshold=3.0e-3
+--loop_scale_linearize_threshold=1.0e-2
+
+# TEASER++ related
+--teaser_max_clique_time_limit=0.05
+--teaser_kcore_heuristic_threshold=0.5
+--teaser_rotation_max_iterations=20
+--teaser_rotation_cost_threshold=1.0e-4
+--teaser_rotation_gnc_factor=1.4
+--teaser_rotation_estimation_algorithm=gnc_tls
+--teaser_rotation_tim_graph=chain
+--teaser_inlier_selection_mode=none
+--teaser_tracker_inlier_selection_mode=none
+--teaser_noise_bound_multiplier=2.0
+
+# mapping module
+--mapping_update_frequency=2.0
+
+# factors related
+--use_photometric=true
+--use_reprojection=false
+--use_geometric=true
+--factor_iters=1000
+--pho_num_samples=3072
+--photo_factor_weights=10,9,8,7
+--desc_num_keypoints=512
+--reproj_factor_weight=0.1
+--reproj_loss_param_factor=0.03
+--match_geom_factor_weight=0.1
+--match_geom_loss_param_factor=0.1
+--geo_factor_weight=0.1
+--geo_loss_param_factor=0.03
+--code_factor_weight=1.0e-3
+--init_pose_prior_weight=1.0e4
+--init_scale_prior_weight=1.0e4
+
+# optimization related
+--isam_partial_relin_check=false
+--isam_relinearize_skip=1
+--isam_wildfire_threshold=1.0e-5
+--isam_enable_detailed_results=true
+--isam_pose_lin_eps=1.0e-3
+--isam_code_lin_eps=1.0e-4
+--isam_scale_lin_eps=1.0e-3
+--refine_mapping_iters=10
+--refine_mapping_num_no_linearize=5
+
+# debugging related
+--enable_timing=false
+--minloglevel=0
+--v=1
+
+# visualization
+--num_visible_keyframes=10
+--num_visible_frustums=20480
+
+# Debug related
+--skip_frames=0
+--run_log_dir=/tmp
+--run_dir_name=SAGE-SLAM
+--quit_on_finish=true
+--record_video=false
+--demo_mode=false
+--pause_step=false
+--frame_interval=0
+--enable_gui=true

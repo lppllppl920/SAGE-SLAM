@@ -131,13 +131,13 @@ def load_model(model, trained_model_path: Path, partial_load: bool):
 
         model_state = model.state_dict()
         if "model" in pre_trained_state:
-            trained_state = pre_trained_state["model"]
+            pre_trained_state = pre_trained_state["model"]
         else:
             raise IOError("no state dict found")
 
         trained_model_state = dict()
-        for k, v in trained_state.items():
-            shape = trained_state[k].shape
+        for k, v in pre_trained_state.items():
+            shape = pre_trained_state[k].shape
             if k in model_state:
                 if model_state[k].shape == shape:
                     trained_model_state[k] = v

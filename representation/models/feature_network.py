@@ -79,6 +79,7 @@ class FeatureNet(nn.Module):
                     PartialBlock(map_inner_filter_list[i], map_inner_filter_list[i + 1], group_size=gn_group_size,
                                  out_activation="relu"))
 
+    @torch.jit.export
     def forward(self, x, mask):
         encoder_outs = []
         encoder_masks = []
@@ -96,7 +97,7 @@ class FeatureNet(nn.Module):
         for i, module in enumerate(self.up_convs):
             enc_out = encoder_outs[-(i + 1)]
             mask = encoder_masks[-(i + 1)]
-            x, _ = module([enc_out, x, mask])
+            x, _ = module(enc_out, x, mask)
 
         mask = encoder_masks[0]
 
