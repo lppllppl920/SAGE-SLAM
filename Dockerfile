@@ -17,7 +17,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y freeglut3-dev mesa-common-dev 
 RUN DEBIAN_FRONTEND=noninteractive apt install -y libswscale-dev libhdf5-dev libgflags-dev libboost-all-dev libprotobuf-dev protobuf-compiler
 RUN python3 -m pip install --upgrade --force pip
 
-# libopencv-dev
 # Set group, user and password and grant the user 'sudo' priviledge
 RUN groupadd -g $GID -o $UNAME
 RUN useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME
