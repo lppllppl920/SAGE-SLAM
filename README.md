@@ -87,24 +87,49 @@
     make -j4 && \
     cd $HOME
     ```
-    Note the `SLAM_BUILD_TYPE` can be changed to `Debug` to enable debugging if you want to further develop the SLAM system. With this command executed, the folder structure within the Docker container should look like below with the command `tree -d -L 2 $HOME`:
+    Note the `SLAM_BUILD_TYPE` can be changed to `Debug` to enable debugging if you want to further develop the SLAM system. With this command executed, the folder structure within the Docker container should look like below with the command `tree -d -L 3 $HOME`:
     ```
     ├── build
-    │   └── Release
+    │   └── Release
+    │       ├── bin
+    │       ├── CMakeFiles
+    │       ├── sources
+    │       └── thirdparty
     ├── data
-    │   └── bag_1
+    │   └── bag_1
+    │       ├── _start_002603_end_002984_stride_1000_segment_00
+    │       ├── _start_003213_end_003527_stride_1000_segment_00
+    │       └── _start_004259_end_004629_stride_1000_segment_00
     ├── pretrained
     ├── representation
-    │   ├── configs
-    │   ├── datasets
-    │   ├── losses
-    │   ├── models
-    │   ├── scripts
-    │   └── utils
+    │   ├── configs
+    │   ├── datasets
+    │   ├── losses
+    │   ├── models
+    │   ├── scripts
+    │   └── utils
     └── system
         ├── configs
         ├── sources
+        │   ├── common
+        │   ├── core
+        │   ├── cuda
+        │   ├── demo
+        │   ├── drivers
+        │   ├── gui
+        │   └── tools
         └── thirdparty
+            ├── build_Release
+            ├── camera_drivers
+            ├── DBoW2
+            ├── eigen
+            ├── gtsam
+            ├── install_Release
+            ├── opengv
+            ├── Pangolin
+            ├── Sophus
+            ├── TEASER-plusplus
+            └── vision_core
     ```
     
 10. Run the SAGE-SLAM system with the following command:
