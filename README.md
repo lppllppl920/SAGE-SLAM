@@ -27,7 +27,7 @@
         └── thirdparty
     ```
 
-5. Build a Docker image and start a Docker container created from the built Docker image. Note that the `PW` in the first command can be specified as any string as the password to access the `sudo` priviledge inside the Docker container. Note that the step 6, 7, and 8 below are optional if you only want to test run the SAGE-SLAM system, because we have pre-generated all required data. 
+5. Install the Docker Engine with the instructions [here](https://docs.docker.com/engine/install/), build a Docker image, and start a Docker container created from the built Docker image. Note that the `PW` in the first command can be specified as any string as the password to access the `sudo` priviledge inside the Docker container. Note that the step 6, 7, and 8 below are optional if you only want to test run the SAGE-SLAM system, because we have pre-generated all required data. 
     ```
     cd <path of the cloned repository> && \
     docker build \
