@@ -2,13 +2,13 @@
     "data_root": "./data",
     "experiment_root": "/tmp",
     "net_load_weights": true,
-    "export_jit_model": false,
+    "export_jit_model": true,
     "eval_only": false,
     "summarize_network": false,
-    "net_depth_model_path": "./pretrained/depth_model.pt",
-    "net_feat_model_path": "./pretrained/feature_model.pt",
-    "net_ba_model_path": "./pretrained/ba_model.pt",
-    "net_disc_model_path": "./pretrained/disc_model.pt",
+    "net_depth_model_path": "/path/to/pretrained/depth/model",
+    "net_feat_model_path": "/path/to/pretrained/feature/model",
+    "net_ba_model_path": "/path/to/pretrained/ba/model",
+    "net_disc_model_path": "/path/to/pretrained/disc/model",
     "net_input_image_size": [
         128,
         160
