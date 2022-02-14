@@ -146,7 +146,7 @@
 
 ## Contact Us
 
-[Xingtong Liu](https://www.linkedin.com/in/xingtong-liu-ph-d-b43b27131/) - [xliu89jhu@gmail.com](mailto:xliu89jhu@gmail.com)
+[Xingtong Liu](https://www.linkedin.com/in/xingtong-liu-ph-d-b43b27131/) ([xliu89jhu@gmail.com](mailto:xliu89jhu@gmail.com))
 
-[Mathias Unberath](https://engineering.jhu.edu/faculty/mathias-unberath/) - [unberath@jhu.edu](mailto:unberath@jhu.edu)
+[Mathias Unberath](https://engineering.jhu.edu/faculty/mathias-unberath/) ([unberath@jhu.edu](mailto:unberath@jhu.edu))
 
