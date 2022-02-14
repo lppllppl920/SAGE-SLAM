@@ -8,13 +8,13 @@ ARG GID
 ARG PW
 
 # Install system dependencies
-RUN apt update
-RUN DEBIAN_FRONTEND=noninteractive apt install -y sudo python3-pip git unzip wget cmake cmake-gui gdb htop ffmpeg
+RUN apt update --fix-missing
+RUN DEBIAN_FRONTEND=noninteractive apt install -y sudo python3-pip git unzip wget cmake cmake-gui gdb htop
 RUN DEBIAN_FRONTEND=noninteractive apt install -y libsm6 libxext6 libxrender-dev libtbb-dev
 RUN DEBIAN_FRONTEND=noninteractive apt install -y libboost-all-dev libglew-dev libgoogle-glog-dev libjsoncpp-dev libopenni2-dev libavcodec-dev libavutil-dev libavformat-dev
 RUN DEBIAN_FRONTEND=noninteractive apt install -y libswscale-dev libavdevice-dev libjpeg-dev libpng-dev libtiff5-dev libopenexr-dev libopenblas-base libopenblas-dev libglu1-mesa-dev
 RUN DEBIAN_FRONTEND=noninteractive apt install -y freeglut3-dev mesa-common-dev libjpeg-dev zlib1g-dev libpython3-dev libavcodec-dev libavformat-dev libncurses-dev
-RUN DEBIAN_FRONTEND=noninteractive apt install -y libswscale-dev libhdf5-dev libgflags-dev libboost-all-dev libprotobuf-dev protobuf-compiler
+RUN DEBIAN_FRONTEND=noninteractive apt install -y libswscale-dev libhdf5-dev libgflags-dev libboost-all-dev libprotobuf-dev protobuf-compiler ffmpeg
 RUN python3 -m pip install --upgrade --force pip
 
 # Set group, user and password and grant the user 'sudo' priviledge
