@@ -1,11 +1,12 @@
 # SAGE: SLAM with Appearance and Geometry Prior for Endoscopy
 
+<sub>This work has been accepted to ICRA 2022.</sub>
 
-SAGE-SLAM system diagram:
+**SAGE-SLAM system diagram:**
 
 <img src="https://user-images.githubusercontent.com/10382126/154220087-0f878af6-091a-4d93-9241-163a34f02109.png" width="656">
 
-An example of SAGE-SLAM system run:
+**An example of SAGE-SLAM system run:**
 
 [![An example of SAGE-SLAM system run](https://img.youtube.com/vi/P1pF3zKbA84/hqdefault.jpg)](https://youtu.be/P1pF3zKbA84)
 
