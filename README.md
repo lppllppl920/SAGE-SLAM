@@ -1,5 +1,8 @@
 # SAGE-SLAM
 
+This is the official repo for the work **SAGE: SLAM with Appearance and Geometry Prior for Endoscopy**.
+
+[![An example of SAGE-SLAM system run](https://img.youtube.com/vi/P1pF3zKbA84/hqdefault.jpg)](https://youtu.be/P1pF3zKbA84)
 
 ## Instructions
 
