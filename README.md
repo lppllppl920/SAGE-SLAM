@@ -164,7 +164,7 @@ For each GIF above, from left to right are the original endoscopic video, the te
     --flagfile $HOME/system/configs/slam_run.flags \
     --enable_gui=false
     ```
-    Note that if the X11 display is working normally, the option `enable_gui` can be set to `true` to see if the GUI of the SLAM system can be brought up. The visualization inside the Docker container has not been fully tested for this SLAM system and please let us know if there is any issue with it.
+    Note that if the X11 display is working normally, the option `enable_gui` can be set to `true` to bring up the GUI of the SLAM system. The visualization inside the Docker container has not been fully tested for this SLAM system and please let us know if there are any issues with it.
 
 ## More Details
 
