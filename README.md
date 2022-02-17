@@ -22,7 +22,7 @@
 
 <img src="https://user-images.githubusercontent.com/10382126/154411430-448d6dc0-b697-4c02-b1f8-30fcacc97062.gif" width="640">
 
-For each GIF above, from left to right are the original endoscopic video, the textured rendering of the surface reconstruction through the camera trajectory from the SLAM system, the depth rendering of the reconstruction, and the dense depth map estimated from the SLAM system. For each sequence, the surface reconstruction is generated using volumetric TSDF with the dense depth maps and camera poses of all keyframes from the SLAM system as input.
+For each GIF above, from left to right are the original endoscopic video, the textured rendering of the surface reconstruction through the camera trajectory from the SLAM system, the depth rendering of the reconstruction, and the dense depth map estimated from the SLAM system. For each sequence, the surface reconstruction is generated using volumetric TSDF with the dense depth maps and camera poses of all keyframes from the SLAM system as input. Note that all sequences above were unseen during the representation learning.
 
 ## Instructions
 
