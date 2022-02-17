@@ -1,5 +1,7 @@
 # SAGE: SLAM with Appearance and Geometry Prior for Endoscopy
 
+<sub> Xingtong Liu, Zhaoshuo Li, Masaru Ishii, Gregory D. Hager, Russell H. Taylor, and Mathias Unberath </sub>
+
 <sub>This work has been accepted to ICRA 2022. Please contact [Xingtong Liu](https://www.linkedin.com/in/xingtong-liu-ph-d-b43b27131/) ([xliu89jhu@gmail.com](mailto:xliu89jhu@gmail.com)) or [Mathias Unberath](https://engineering.jhu.edu/faculty/mathias-unberath/) ([unberath@jhu.edu](mailto:unberath@jhu.edu)) if you have any questions. </sub>
 
 **SAGE-SLAM system diagram:**
