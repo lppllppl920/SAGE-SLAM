@@ -6,9 +6,11 @@
 
 <img src="https://user-images.githubusercontent.com/10382126/154220087-0f878af6-091a-4d93-9241-163a34f02109.png" width="656">
 
-**An example of SAGE-SLAM system run:**
+**ICRA 2022 supplementary video (YouTube video)"
 
-[![An example of SAGE-SLAM system run](https://img.youtube.com/vi/P1pF3zKbA84/hqdefault.jpg)](https://youtu.be/P1pF3zKbA84)
+[![ICRA 2022 supplementary video](https://img.youtube.com/vi/Bp6YgEktQRE/hqdefault.jpg)](https://youtu.be/Bp6YgEktQRE)
+
+
 
 ## Instructions
 
@@ -151,6 +153,10 @@
     --enable_gui=false
     ```
     Note that if the X11 display is working normally, the option `enable_gui` can be set to `true` to see if the GUI of the SLAM system can be brought up. The visualization inside the Docker container has not been fully tested for this SLAM system and please let us know if there is any issue with it.
+
+## More Details
+
+As mentioned in the paper related to this repository, more details of the method are provided [here](https://github.com/lppllppl920/SAGE-SLAM/files/8085662/SLAM-related-thesis.pdf).
 
 
 ## Contact Us
