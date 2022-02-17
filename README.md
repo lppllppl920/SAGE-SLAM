@@ -1,10 +1,10 @@
 # SAGE: SLAM with Appearance and Geometry Prior for Endoscopy
 
-<sub>This work has been accepted to ICRA 2022.</sub>
+<sub>This work has been accepted to ICRA 2022. Please contact [Xingtong Liu](https://www.linkedin.com/in/xingtong-liu-ph-d-b43b27131/) ([xliu89jhu@gmail.com](mailto:xliu89jhu@gmail.com)) or [Mathias Unberath](https://engineering.jhu.edu/faculty/mathias-unberath/) ([unberath@jhu.edu](mailto:unberath@jhu.edu)) if you have any questions. </sub>
 
 **SAGE-SLAM system diagram:**
 
-<img src="https://user-images.githubusercontent.com/10382126/154220087-0f878af6-091a-4d93-9241-163a34f02109.png" width="656">
+<img src="https://user-images.githubusercontent.com/10382126/154220087-0f878af6-091a-4d93-9241-163a34f02109.png" width="640">
 
 **ICRA 2022 supplementary video (YouTube video):**
 
@@ -12,15 +12,15 @@
 
 **Fly-through of surface reconstruction:**
 
-<img src="https://user-images.githubusercontent.com/10382126/154411373-d72076ca-3ba7-4bea-8cbc-9f7806bc7194.gif" width="656">
+<img src="https://user-images.githubusercontent.com/10382126/154411373-d72076ca-3ba7-4bea-8cbc-9f7806bc7194.gif" width="640">
 
-<img src="https://user-images.githubusercontent.com/10382126/154411390-b703b050-2950-4ef7-9b82-806cbad3d684.gif" width="656">
+<img src="https://user-images.githubusercontent.com/10382126/154411390-b703b050-2950-4ef7-9b82-806cbad3d684.gif" width="640">
 
-<img src="https://user-images.githubusercontent.com/10382126/154411417-1611142f-f00a-4ace-847e-f1fda668e4c6.gif" width="656">
+<img src="https://user-images.githubusercontent.com/10382126/154411417-1611142f-f00a-4ace-847e-f1fda668e4c6.gif" width="640">
 
-<img src="https://user-images.githubusercontent.com/10382126/154411430-448d6dc0-b697-4c02-b1f8-30fcacc97062.gif" width="656">
+<img src="https://user-images.githubusercontent.com/10382126/154411430-448d6dc0-b697-4c02-b1f8-30fcacc97062.gif" width="640">
 
-For each GIF above, from left to right are the original endoscopic video, the textured rendering of the surface reconstruction with the camera trajectory from the SLAM system, the depth rendering of the reconstruction, and the dense depth map estimated from the SLAM system. For each sequence, the surface reconstruction is generated using volumetric TSDF with the dense depth maps and camera poses of all keyframes from the SLAM system as input.
+For each GIF above, from left to right are the original endoscopic video, the textured rendering of the surface reconstruction through the camera trajectory from the SLAM system, the depth rendering of the reconstruction, and the dense depth map estimated from the SLAM system. For each sequence, the surface reconstruction is generated using volumetric TSDF with the dense depth maps and camera poses of all keyframes from the SLAM system as input.
 
 ## Instructions
 
@@ -169,9 +169,13 @@ For each GIF above, from left to right are the original endoscopic video, the te
 As mentioned in the paper related to this repository, more details of the method are provided [here](https://github.com/lppllppl920/SAGE-SLAM/files/8085662/SLAM-related-thesis.pdf).
 
 
-## Contact Us
+## Related Projects
 
-[Xingtong Liu](https://www.linkedin.com/in/xingtong-liu-ph-d-b43b27131/) ([xliu89jhu@gmail.com](mailto:xliu89jhu@gmail.com))
+- [Neighborhood Normalization for Robust Geometric Feature Learning (CVPR 2021)](https://github.com/lppllppl920/NeighborhoodNormalization-Pytorch)
 
-[Mathias Unberath](https://engineering.jhu.edu/faculty/mathias-unberath/) ([unberath@jhu.edu](mailto:unberath@jhu.edu))
+- [Reconstructing Sinus Anatomy from Endoscopic Video -- Towards a Radiation-free Approach for Quantitative Longitudinal Assessment (MICCAI 2020)](https://github.com/lppllppl920/DenseReconstruction-Pytorch)
+
+- [Extremely Dense Point Correspondences using a Learned Feature Descriptor (CVPR 2020)](https://github.com/lppllppl920/DenseDescriptorLearning-Pytorch)
+
+- [Dense Depth Estimation in Monocular Endoscopy with Self-supervised Learning Methods (TMI 2020)](https://github.com/lppllppl920/EndoscopyDepthEstimation-Pytorch)
 
