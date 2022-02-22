@@ -4,6 +4,18 @@
 
 This work has been accepted to ICRA 2022 with the Arxiv version of the paper [here](https://arxiv.org/pdf/2202.09487.pdf). Please contact [Xingtong Liu](https://www.linkedin.com/in/xingtong-liu-ph-d-b43b27131/) ([xliu89jhu@gmail.com](mailto:xliu89jhu@gmail.com)) or [Mathias Unberath](https://engineering.jhu.edu/faculty/mathias-unberath/) ([unberath@jhu.edu](mailto:unberath@jhu.edu)) if you have any questions.
 
+If you find our work relevant, please consider citing it as
+```
+@misc{liu2022sage,
+      title={SAGE: SLAM with Appearance and Geometry Prior for Endoscopy}, 
+      author={Xingtong Liu and Zhaoshuo Li and Masaru Ishii and Gregory D. Hager and Russell H. Taylor and Mathias Unberath},
+      year={2022},
+      eprint={2202.09487},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+```
+
 **SAGE-SLAM system diagram:**
 
 <img src="https://user-images.githubusercontent.com/10382126/154220087-0f878af6-091a-4d93-9241-163a34f02109.png" width="640">
