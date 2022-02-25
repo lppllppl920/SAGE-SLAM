@@ -177,6 +177,9 @@ For each GIF above, from left to right are the original endoscopic video, the te
     --enable_gui=false
     ```
     Note that if the X11 display is working normally, the option `enable_gui` can be set to `true` to bring up the GUI of the SLAM system. The visualization inside the Docker container has not been fully tested for this SLAM system and please let us know if there are any issues with it.
+    
+11. If you would like to run the system outside the Docker container, you will need to manually setup the environment (libraries, packages, etc.) the same way as what is indicated in the `Dockerfile`.
+
 
 ## More Details
 
