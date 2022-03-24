@@ -13,10 +13,6 @@ class DiffFeatureMatcher(torch.nn.Module):
         self.loss_eps = loss_eps
         self.norm_eps = norm_eps
         self.cycle_consis_threshold = cycle_consis_threshold
-        # H x W, tuple of size 2
-        self.mesh_grid = torch.meshgrid(
-            [torch.arange(start=0, end=input_image_size[0]).long().cuda(),
-             torch.arange(start=0, end=input_image_size[1]).long().cuda()])
 
     def calculate_no_match_loss(self, x, return_response=False):
         src_feature_map, tgt_feature_map, no_match_2d_hw_locations = x
