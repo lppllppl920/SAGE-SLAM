@@ -167,7 +167,7 @@ For each GIF above, from left to right are the original endoscopic video, the te
     
 10. Run the SAGE-SLAM system with the following command:
     ```
-    SLAM_BUILD_TYPE=Debug && \
+    SLAM_BUILD_TYPE=Release && \
     cd $HOME && \
     LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/system/thirdparty/install_$SLAM_BUILD_TYPE/lib \
     $HOME/build/$SLAM_BUILD_TYPE/bin/df_demo \
