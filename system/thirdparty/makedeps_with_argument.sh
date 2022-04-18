@@ -96,8 +96,8 @@ function build_cmake_deps()
   #################
   ##### DBoW2
   cmake_opts=("-DCMAKE_BUILD_TYPE=${build_type}"
-              "-DCMAKE_INSTALL_PREFIX=${install_dir}")
-              "-Eigen_DIR=${install_dir}/share/eigen3/cmake"
+              "-DCMAKE_INSTALL_PREFIX=${install_dir}"
+              "-Eigen_DIR=${install_dir}/share/eigen3/cmake")
   build_cmake_dep "DBoW2" ${cmake_opts[@]}
   #################
   ##### vision_core

@@ -10,6 +10,8 @@
 .ssh/
 .vscode-server/
 .vscode/
+.gnupg/
+.mozilla/
 build.log
 build/
 data/

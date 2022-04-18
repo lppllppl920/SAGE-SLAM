@@ -10,6 +10,8 @@ ARG PW
 # Install system dependencies
 RUN apt update --fix-missing
 RUN DEBIAN_FRONTEND=noninteractive apt install -y sudo python3-pip git unzip wget cmake cmake-gui gdb htop
+RUN DEBIAN_FRONTEND=noninteractive apt install -y libgtk2.0-dev pkg-config
+RUN DEBIAN_FRONTEND=noninteractive apt install -y libopencv-dev python3-opencv
 RUN DEBIAN_FRONTEND=noninteractive apt install -y libsm6 libxext6 libxrender-dev libtbb-dev
 RUN DEBIAN_FRONTEND=noninteractive apt install -y libboost-all-dev libglew-dev libgoogle-glog-dev libjsoncpp-dev libopenni2-dev libavcodec-dev libavutil-dev libavformat-dev
 RUN DEBIAN_FRONTEND=noninteractive apt install -y libswscale-dev libavdevice-dev libjpeg-dev libpng-dev libtiff5-dev libopenexr-dev libopenblas-base libopenblas-dev libglu1-mesa-dev

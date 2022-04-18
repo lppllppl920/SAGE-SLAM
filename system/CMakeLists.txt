@@ -96,7 +96,7 @@ set(Torch_DIR ${Torch_PATH})
 find_package(Torch        REQUIRED)
 
 find_package(Boost        REQUIRED COMPONENTS filesystem)
-find_package(OpenCV       REQUIRED)
+find_package(OpenCV 4     REQUIRED)
 find_package(HDF5         REQUIRED COMPONENTS C CXX)
 find_package(PkgConfig    REQUIRED)
 pkg_check_modules(glog REQUIRED libglog)

@@ -183,7 +183,7 @@ endif()
 # ------------------------------------------------------------------------------
 message("Project: ${PROJECT_NAME} / ${${PROJECT_NAME}_VERSION}, build type: ${CMAKE_BUILD_TYPE}, compiled on: ${CMAKE_SYSTEM}, flags: ${CMAKE_CXX_FLAGS}, GLBinding: ${USE_GLBINDING} CUDA: ${CUDA_FOUND} OpenCL: ${OpenCL_FOUND}")
 
-find_package(OpenCV QUIET)
+find_package(OpenCV 4 QUIET)
 find_package(Ceres QUIET)
 find_package(cereal QUIET)
 find_package(Vulkan QUIET)

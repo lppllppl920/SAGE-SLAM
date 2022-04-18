@@ -45,13 +45,12 @@ struct PixelData
   vec2 pos;
   vec3 color;
   float depth;
-//  float stdev;
   bool valid;
 };
 
 PixelData fetch_pixel(ivec2 loc)
 {
-  struct PixelData data;
+  PixelData data;
   data.pos = loc;
   data.color = texelFetch(image, loc, 0).xyz;
   data.depth = texelFetch(depth, loc, 0).x;
