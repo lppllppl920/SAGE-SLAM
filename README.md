@@ -60,7 +60,7 @@ For each GIF above, from left to right are the original endoscopic video, the te
         └── thirdparty
     ```
 
-5. Install the Docker Engine with the instructions [here](https://docs.docker.com/engine/install/), build a Docker image, and start a Docker container created from the built Docker image. Note that the `PW` in the `docker build` command can be specified as any string as the password to access the `sudo` priviledge inside the Docker container. Note that the step 6, 7, and 8 below are optional if you only want to test run the SAGE-SLAM system, because we have pre-generated all required data. 
+5. Install the Docker Engine with the instructions [here](https://docs.docker.com/engine/install/) and [here](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker), build a Docker image, and start a Docker container created from the built Docker image. Note that the `PW` in the `docker build` command can be specified as any string as the password to access the `sudo` priviledge inside the Docker container. Note that the step 6, 7, and 8 below are optional if you only want to test run the SAGE-SLAM system, because we have pre-generated all required data. 
     ```
     cd <path of the cloned repository> && \
     docker build \
@@ -120,7 +120,7 @@ For each GIF above, from left to right are the original endoscopic video, the te
     make -j4 && \
     cd $HOME
     ```
-    Note the `SLAM_BUILD_TYPE` can be changed to `Debug` to enable debugging if you want to further develop the SLAM system. With this command executed, the folder structure within the Docker container should look like below with the command `tree -d -L 3 $HOME`:
+    Note in some situations, the above command somehow needs to be run twice to successfully compile the program `df_demo`. The `SLAM_BUILD_TYPE` can be changed to `Debug` to enable debugging if you want to further develop the SLAM system. With this command executed, the folder structure within the Docker container should look like below with the command `tree -d -L 3 $HOME`:
     ```
     ├── build
     │   └── Release
