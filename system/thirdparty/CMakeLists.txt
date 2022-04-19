@@ -12,13 +12,3 @@ set(CMAKE_PREFIX_PATH ${INSTALL_DIR})
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-# ------------------------------------------------------------------------------
-# Add a DBoW2 imported target because it does something weird in its config
-# ------------------------------------------------------------------------------
-add_library(DBoW2 SHARED IMPORTED GLOBAL)
-message(STATUS "DBOW2 library path ${DBoW2_LIBRARY}")
-set_property(TARGET DBoW2 APPEND PROPERTY IMPORTED_LOCATION
-  ${DBoW2_LIBRARY})
-set_property(TARGET DBoW2 APPEND PROPERTY INTERFACE_INCLUDE_DIRECTORIES
-  ${DBoW2_INCLUDE_DIR})

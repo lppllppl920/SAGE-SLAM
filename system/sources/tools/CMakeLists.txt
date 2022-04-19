@@ -33,9 +33,8 @@ target_link_libraries(voc_builder PUBLIC
   opencv_core
   opencv_highgui
   gflags
-  # glog
   ${glog_LIBRARIES}
-  DBoW2
+  ${DBoW2_LIBRARIES}
   stdc++fs
   ${HDF5_CXX_LIBRARIES}
   ${HDF5_LIBRARIES}

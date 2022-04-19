@@ -133,10 +133,12 @@ find_package(CameraDrivers  REQUIRED)
 
 set(DBoW2_DIR "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/build_${CMAKE_BUILD_TYPE}/DBoW2")
 find_package(DBoW2          REQUIRED)
+message(STATUS "DBOW2 library path ${DBoW2_LIBRARIES}")
 
 add_definitions(-DC10_USE_GLOG)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
+include_directories(${DBoW2_INCLUDE_DIRS})
 include_directories(${OpenCV_INCLUDE_DIRS})
 include_directories(${HDF5_INCLUDE_DIRS})
 include_directories(${INTERFACE_INCLUDE_DIRECTORIES})

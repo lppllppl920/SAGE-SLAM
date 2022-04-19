@@ -16,7 +16,7 @@ target_include_directories(df_demo PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}
 )
 target_link_libraries(df_demo PUBLIC
-  DBoW2
+  ${DBoW2_LIBRARIES}
   df_common
   df_core
   df_gui
@@ -24,7 +24,6 @@ target_link_libraries(df_demo PUBLIC
   opencv_core
   opencv_highgui
   boost_filesystem
-  # glog
   ${glog_LIBRARIES}
   gflags
   ncursesw

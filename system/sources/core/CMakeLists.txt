@@ -88,10 +88,9 @@ target_link_libraries(df_core
   df_common
   df_cuda
   Eigen3::Eigen
-  DBoW2
+  ${DBoW2_LIBRARIES}
   gtsam
   opengv
-  # glog
   ${glog_LIBRARIES}
   gflags
   teaserpp::teaser_registration
