@@ -117,7 +117,7 @@ For each GIF above, from left to right are the original endoscopic video, the te
     mkdir -p $HOME/build/$SLAM_BUILD_TYPE && \
     cd $HOME/build/$SLAM_BUILD_TYPE && \
     cmake -DCMAKE_BUILD_TYPE=$SLAM_BUILD_TYPE $HOME/system/ && \
-    make -j8 && \
+    make -j6 && \
     cd $HOME
     ```
     Note the `SLAM_BUILD_TYPE` can be changed to `Debug` to enable debugging if you want to further develop the SLAM system. With this command executed, the folder structure within the Docker container should look like below with the command `tree -d -L 3 $HOME`:
