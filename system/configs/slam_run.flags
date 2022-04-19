@@ -119,7 +119,7 @@
 # debugging related
 --enable_timing=false
 --minloglevel=0
---v=1
+--v=0
 
 # visualization
 --num_visible_keyframes=10
