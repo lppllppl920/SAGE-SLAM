@@ -117,10 +117,10 @@ For each GIF above, from left to right are the original endoscopic video, the te
     mkdir -p $HOME/build/$SLAM_BUILD_TYPE && \
     cd $HOME/build/$SLAM_BUILD_TYPE && \
     cmake -DCMAKE_BUILD_TYPE=$SLAM_BUILD_TYPE $HOME/system/ && \
-    make -j4 && \
+    make -j8 && \
     cd $HOME
     ```
-    Note in some situations, the above command somehow needs to be run twice to successfully compile the program `df_demo`. The `SLAM_BUILD_TYPE` can be changed to `Debug` to enable debugging if you want to further develop the SLAM system. With this command executed, the folder structure within the Docker container should look like below with the command `tree -d -L 3 $HOME`:
+    Note the `SLAM_BUILD_TYPE` can be changed to `Debug` to enable debugging if you want to further develop the SLAM system. With this command executed, the folder structure within the Docker container should look like below with the command `tree -d -L 3 $HOME`:
     ```
     ├── build
     │   └── Release
@@ -174,7 +174,7 @@ For each GIF above, from left to right are the original endoscopic video, the te
     --flagfile $HOME/system/configs/slam_run.flags \
     --enable_gui=false
     ```
-    Note that if the X11 display is working normally, the option `enable_gui` can be set to `true` to bring up the GUI of the SLAM system. The visualization inside the Docker container has not been fully tested for this SLAM system and please let us know if there are any issues with it.
+    Note that the X11 display should work normally with host operating system as linux. In this case, the option `enable_gui` can be set to `true` to bring up the GUI of the SLAM system.
     
 11. If you would like to run the system outside the Docker container, you will need to manually setup the environment (libraries, packages, etc.) the same way as what is indicated in the `Dockerfile`.
 
