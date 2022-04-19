@@ -120,7 +120,7 @@ For each GIF above, from left to right are the original endoscopic video, the te
     make -j4 && \
     cd $HOME
     ```
-    Note in some situations, the above command somehow needs to be run twice to successfully compile the program `df_demo`. The `SLAM_BUILD_TYPE` can be changed to `Debug` to enable debugging if you want to further develop the SLAM system. With this command executed, the folder structure within the Docker container should look like below with the command `tree -d -L 3 $HOME`:
+    Note the `SLAM_BUILD_TYPE` can be changed to `Debug` to enable debugging if you want to further develop the SLAM system. With this command executed, the folder structure within the Docker container should look like below with the command `tree -d -L 3 $HOME`:
     ```
     ├── build
     │   └── Release
