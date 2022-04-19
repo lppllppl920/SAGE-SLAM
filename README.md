@@ -170,6 +170,7 @@ For each GIF above, from left to right are the original endoscopic video, the te
     SLAM_BUILD_TYPE=Release && \
     cd $HOME && \
     LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/system/thirdparty/install_$SLAM_BUILD_TYPE/lib \
+    MESA_GL_VERSION_OVERRIDE=3.3 \
     $HOME/build/$SLAM_BUILD_TYPE/bin/df_demo \
     --flagfile $HOME/system/configs/slam_run.flags \
     --enable_gui=false
