@@ -175,7 +175,7 @@ For each GIF above, from left to right are the original endoscopic video, the te
     --flagfile $HOME/system/configs/slam_run.flags \
     --enable_gui=false
     ```
-    Note that the X11 display should work normally with host operating system as linux. In this case, the option `enable_gui` can be set to `true` to bring up the GUI of the SLAM system.
+    Note that the X11 display should work normally with host operating system as linux. In this case, the option `enable_gui` can be set to `true` to bring up the GUI of the SLAM system. Besides the common SLAM GUI, if `enable_gui` is set to `true`, appending `--v=1` to the command above will show an image of the recent loop pair when a global loop is detected. Setting the option as `--v=3` will show more images for the debugging purpose.
     
 11. If you would like to run the system outside the Docker container, you will need to manually setup the environment (libraries, packages, etc.) the same way as what is indicated in the `Dockerfile`.
 
