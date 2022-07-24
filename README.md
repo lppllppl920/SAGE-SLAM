@@ -1,17 +1,18 @@
 # SAGE: SLAM with Appearance and Geometry Prior for Endoscopy
 
-This work has been accepted to ICRA 2022 with the Arxiv version of the paper [here](https://arxiv.org/pdf/2202.09487.pdf). Please contact [Xingtong Liu](https://www.linkedin.com/in/xingtong-liu-ph-d-b43b27131/) ([xliu89jhu@gmail.com](mailto:xliu89jhu@gmail.com)) or [Mathias Unberath](https://engineering.jhu.edu/faculty/mathias-unberath/) ([unberath@jhu.edu](mailto:unberath@jhu.edu)) if you have any questions.
+This work has been published in ICRA 2022 and can be found [here](https://ieeexplore.ieee.org/document/9812257). Please contact [Xingtong Liu](https://www.linkedin.com/in/xingtong-liu-ph-d-b43b27131/) ([xliu89jhu@gmail.com](mailto:xliu89jhu@gmail.com)) or [Mathias Unberath](https://engineering.jhu.edu/faculty/mathias-unberath/) ([unberath@jhu.edu](mailto:unberath@jhu.edu)) if you have any questions.
 
 If you find our work relevant, please consider citing it as
 ```
-@misc{liu2022sage,
-      title={SAGE: SLAM with Appearance and Geometry Prior for Endoscopy}, 
-      author={Xingtong Liu and Zhaoshuo Li and Masaru Ishii and Gregory D. Hager and Russell H. Taylor and Mathias Unberath},
-      year={2022},
-      eprint={2202.09487},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
-}
+@INPROCEEDINGS{liu2022sage,
+  author={Liu, Xingtong and Li, Zhaoshuo and Ishii, Masaru and Hager, Gregory D. and Taylor, Russell H. and Unberath, Mathias},
+  booktitle={2022 International Conference on Robotics and Automation (ICRA)}, 
+  title={SAGE: SLAM with Appearance and Geometry Prior for Endoscopy}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={5587-5593},
+  doi={10.1109/ICRA46639.2022.9812257}}
 ```
 
 **SAGE-SLAM system diagram:**
