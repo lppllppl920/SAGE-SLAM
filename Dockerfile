@@ -1,5 +1,5 @@
 # Import the docker base image
-FROM nvcr.io/nvidia/pytorch:21.04-py3
+FROM nvcr.io/nvidia/pytorch:22.04-py3
 
 # Define arguments, username, user id, group id, and user password, whose values will be provided later in the docker build command
 ARG UNAME
