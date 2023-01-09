@@ -41,7 +41,7 @@ For each GIF above, from left to right are the original endoscopic video, the te
     ```
     git clone git@github.com:lppllppl920/SAGE-SLAM.git
     ```
-2. Download an example dataset from [this link](https://drive.google.com/drive/folders/1dYC_-w4HsrmA5ecQ3a_2R0FnJX0Bmc-o?usp=sharing).
+2. Download an example dataset from [this link](https://drive.google.com/drive/folders/1dYC_-w4HsrmA5ecQ3a_2R0FnJX0Bmc-o?usp=sharing). (To generate HDF5 of your own dataset for training, you can follow [this repo](https://github.com/lppllppl920/DenseReconstruction-Pytorch). Note that you will need to store `depth_image` and `mask_image` rendered in this [code block](https://github.com/lppllppl920/DenseReconstruction-Pytorch/blob/master/surface_reconstruction.py#L184) in the 'render_depth' and 'render_mask' keys of the HDF5 file created.)
 3. Create a `data` folder inside the cloned repository and put the downloaded folder `bag_1` inside the `data` folder.
 4. After the steps above, the folder structure of the cloned repository will be shown as below with the command `tree -d -L 2 <path of the cloned repository>`
     ```
